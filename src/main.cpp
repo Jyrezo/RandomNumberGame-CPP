@@ -51,8 +51,8 @@ int main(int argc, char** argv) {
         {
             printf("Correct!\nYou guessed the number in %s guesses!\n", std::to_string(number_of_guesses).c_str());
             break;
-        } else
-        {
+        } 
+        else {
             if (guess_result == HIGHER){
                 std::cout << "The number is higher than your guess." << std::endl;
             } else if (guess_result == LOWER) {
