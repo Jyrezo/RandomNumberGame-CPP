@@ -8,7 +8,8 @@ std::int16_t random_number;
 enum GUESS_RESULT {
     HIGHER,
     LOWER,
-    CORRECT
+    CORRECT,
+    INVALID_GUESS
 };
 
 GUESS_RESULT getGuess(){
@@ -16,14 +17,18 @@ GUESS_RESULT getGuess(){
 
     std::cin >> guess_input;
 
-    int16_t guess_int = std::stoi(guess_input);
+    try {
+        int16_t guess_int = std::stoi(guess_input);
 
-    if (guess_int > random_number){
-        return LOWER;
-    } else if (guess_int < random_number){
-        return HIGHER;
-    } else {
-        return CORRECT;
+        if (guess_int > random_number){
+            return LOWER;
+        } else if (guess_int < random_number){
+            return HIGHER;
+        } else {
+            return CORRECT;
+        }
+    } catch (const std::exception& error) {
+        return INVALID_GUESS;
     }
 }
 
@@ -52,6 +57,8 @@ int main(int argc, char** argv) {
                 std::cout << "The number is higher than your guess." << std::endl;
             } else if (guess_result == LOWER) {
                 std::cout << "The number is lower than your guess." << std::endl;
+            } else if (guess_result == INVALID_GUESS) {
+                std::cout << "Your guess is not valid." << std::endl;
             }
         }    
     }
