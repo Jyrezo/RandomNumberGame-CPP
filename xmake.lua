@@ -1,7 +1,7 @@
 add_rules("mode.debug", "mode.release")
 set_description("Funny random number game")
 
-target("RandomNumberGame-CPP")
+target("RandomNumberGame")
     set_kind("binary")
     add_files("src/*.cpp")
 

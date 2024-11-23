@@ -29,18 +29,22 @@ GUESS_RESULT getGuess(){
 
 int main(int argc, char** argv) {
     srand(time(0));
-    random_number = lower_bound_number + (rand() % upper_bound_number);
+    random_number = lower_bound_number + (rand() % (upper_bound_number - lower_bound_number + 1));
 
-    std::cout << "Welcome to the Random Number Game, Please Guess the Random Number " << std::endl;
+    printf("Welcome to the Random Number Game, guess the random number! (%s - %s)\n", std::to_string(lower_bound_number).c_str(), std::to_string(upper_bound_number).c_str());
+
+    int16_t number_of_guesses = 0;
 
     while (true)
     {
         std::cout << "Input guess: ";
         GUESS_RESULT guess_result = getGuess();
 
+        number_of_guesses += 1;
+
         if (guess_result == CORRECT)
         {
-            std::cout << "Correct" << std::endl;
+            printf("Correct!\nYou guessed the number in %s guesses!\n", std::to_string(number_of_guesses).c_str());
             break;
         } else
         {
@@ -51,6 +55,8 @@ int main(int argc, char** argv) {
             }
         }    
     }
+
+    system("pause");
 
     return 0;
 }
